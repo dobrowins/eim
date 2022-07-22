@@ -1,8 +1,8 @@
 package com.dobrowins.extremelyinconvenientmessenger.data
 
-import com.dobrowins.extremelyinconvenientmessenger.data.network.CreateNoteApi
-import com.dobrowins.extremelyinconvenientmessenger.data.network.CreateNoteRequestData
-import com.dobrowins.extremelyinconvenientmessenger.data.network.CreateNoteResponse
+import com.dobrowins.extremelyinconvenientmessenger.data.network.create_note.CreateNoteApi
+import com.dobrowins.extremelyinconvenientmessenger.data.network.create_note.CreateNoteRequestData
+import com.dobrowins.extremelyinconvenientmessenger.data.network.create_note.CreateNoteResponse
 import okhttp3.MultipartBody
 
 class OneTymeRemoteRepositoryImpl constructor(

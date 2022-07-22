@@ -1,6 +1,6 @@
 package com.dobrowins.extremelyinconvenientmessenger.data
 
-import com.dobrowins.extremelyinconvenientmessenger.data.network.CreateNoteResponse
+import com.dobrowins.extremelyinconvenientmessenger.data.network.create_note.CreateNoteResponse
 
 interface OneTymeRemoteRepository {
 

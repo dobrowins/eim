@@ -1,4 +1,4 @@
-package com.dobrowins.extremelyinconvenientmessenger.data.network
+package com.dobrowins.extremelyinconvenientmessenger.data.network.create_note
 
 import okhttp3.RequestBody
 import retrofit2.http.Body

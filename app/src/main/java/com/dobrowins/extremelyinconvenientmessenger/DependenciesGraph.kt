@@ -2,8 +2,8 @@ package com.dobrowins.extremelyinconvenientmessenger
 
 import com.dobrowins.extremelyinconvenientmessenger.data.OneTymeRemoteRepository
 import com.dobrowins.extremelyinconvenientmessenger.data.OneTymeRemoteRepositoryImpl
-import com.dobrowins.extremelyinconvenientmessenger.data.network.CreateNoteApi
-import com.dobrowins.extremelyinconvenientmessenger.domain.CreateNote
+import com.dobrowins.extremelyinconvenientmessenger.data.network.create_note.CreateNoteApi
+import com.dobrowins.extremelyinconvenientmessenger.domain.create_note.CreateNote
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -13,7 +13,7 @@ object DependenciesGraph {
 
     object Network {
 
-        private val okHttpClient: OkHttpClient =
+        private val okHttpClient: OkHttpClient by lazy {
             OkHttpClient.Builder().run {
                 if (BuildConfig.DEBUG) {
                     val loggingInterceptor = HttpLoggingInterceptor()
@@ -22,10 +22,11 @@ object DependenciesGraph {
                 }
                 build()
             }
+        }
 
         private val retrofit: Retrofit by lazy {
             Retrofit.Builder()
-                .baseUrl("https://1ty.me/")
+                .baseUrl(BuildConfig.ENDPOINT)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

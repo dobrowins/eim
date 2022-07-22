@@ -1,4 +1,4 @@
-package com.dobrowins.extremelyinconvenientmessenger.data.network
+package com.dobrowins.extremelyinconvenientmessenger.data.network.create_note
 
 import com.google.gson.annotations.SerializedName
 

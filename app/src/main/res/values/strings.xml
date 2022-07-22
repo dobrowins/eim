@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Extremely Inconvenient Messenger</string>
     <string name="error_formattable">Error is: %s</string>
-    <string name="snackbar_button_title_retry">retry</string>
+    <string name="snackbar_button_title_retry">Retry</string>
+    <string name="share_via_title">Share via</string>
+    <string name="title_generate_link">Generate link</string>
 </resources>

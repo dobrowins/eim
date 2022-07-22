@@ -1,4 +1,4 @@
-package com.dobrowins.extremelyinconvenientmessenger.ui.create_note
+package com.dobrowins.extremelyinconvenientmessenger.ui.composables
 
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Button
@@ -7,7 +7,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.dobrowins.extremelyinconvenientmessenger.R
 
 @Composable
@@ -29,10 +28,4 @@ fun EimButton(
             color = colorResource(id = R.color.white),
         )
     }
-}
-
-@Preview
-@Composable
-fun EimButtonPreview() {
-    EimButton("test", {})
 }
