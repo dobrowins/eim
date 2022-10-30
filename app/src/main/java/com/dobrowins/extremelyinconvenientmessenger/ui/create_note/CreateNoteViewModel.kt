@@ -7,6 +7,7 @@ import com.dobrowins.extremelyinconvenientmessenger.common.Handles
 import com.dobrowins.extremelyinconvenientmessenger.domain.create_note.CreateNote
 import com.dobrowins.extremelyinconvenientmessenger.domain.create_note.CreateNoteException
 import com.dobrowins.extremelyinconvenientmessenger.ui.BaseViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -22,6 +23,8 @@ class CreateNoteViewModel constructor(
             .run { _state.value = this }
     }
 
+    private var createNoteJob: Job? = null
+
     override fun onEvent(event: CreateNoteEvent) {
         _state.value = _state.value.copy(error = null)
         when (event) {
@@ -30,7 +33,8 @@ class CreateNoteViewModel constructor(
             }
             is CreateNoteEvent.CreateNote -> {
                 if (event.note.isEmpty()) return
-                safeLaunch(CreateNoteException()) {
+                createNoteJob?.cancel()
+                createNoteJob = safeLaunch(CreateNoteException()) {
                     val createdNote = createNote.from(note = event.note)
                     val error = createdNote.error
                     if (error != null) {

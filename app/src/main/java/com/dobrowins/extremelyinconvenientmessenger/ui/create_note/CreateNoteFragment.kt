@@ -1,15 +1,11 @@
 package com.dobrowins.extremelyinconvenientmessenger.ui.create_note
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
 import androidx.compose.material.SnackbarResult
 import androidx.compose.material.rememberScaffoldState
@@ -36,7 +32,12 @@ class CreateNoteFragment : Fragment(), ShareFragment, ShowsSnackbar {
     private val viewModel: CreateNoteViewModel by viewModels()
     private val createNote: (String) -> Unit get() = CreateNoteEvent::CreateNote andThen viewModel::onEvent
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return ComposeView(requireContext()).apply {
             setContent {
 
@@ -87,7 +88,10 @@ class CreateNoteFragment : Fragment(), ShareFragment, ShowsSnackbar {
                         if (error?.message?.isNotEmpty() == true) {
                             scaffoldState.showSnackbar(
                                 data = SnackbarData(
-                                    message = stringResource(id = R.string.error_formattable, formatArgs = arrayOf(error.message)),
+                                    message = stringResource(
+                                        id = R.string.error_formattable,
+                                        formatArgs = arrayOf(error.message)
+                                    ),
                                     buttonTitle = stringResource(R.string.snackbar_button_title_retry),
                                 ),
                                 scope = scope,
@@ -95,7 +99,9 @@ class CreateNoteFragment : Fragment(), ShareFragment, ShowsSnackbar {
                                     when (snackbarResult) {
                                         SnackbarResult.ActionPerformed -> {
                                             when (error.exception) {
-                                                is CreateNoteException -> state.value.note.run(createNote)
+                                                is CreateNoteException -> state.value.note.run(
+                                                    createNote
+                                                )
                                                 else -> Unit
                                             }
                                         }

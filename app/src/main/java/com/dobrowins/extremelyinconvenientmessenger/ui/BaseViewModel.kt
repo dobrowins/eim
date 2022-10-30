@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dobrowins.extremelyinconvenientmessenger.common.EimError
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 abstract class BaseViewModel<State> : ViewModel() {
 
@@ -25,7 +25,7 @@ abstract class BaseViewModel<State> : ViewModel() {
     fun safeLaunch(
         exception: RuntimeException? = null,
         f: suspend () -> Unit,
-    ) {
-        viewModelScope.launch(onError(exception)) { withContext(viewModelScope.coroutineContext) { f() } }
+    ): Job {
+        return viewModelScope.launch(onError(exception)) { f() }
     }
 }
